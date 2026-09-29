@@ -1,0 +1,113 @@
+/* A + B: oversized type and a borderless film that blends into the page. */
+.story-ab {
+  height: 250svh;
+  --film-w: 100%; --film-h: 100%; --film-top: 50%; --film-left: 50%;
+  --film-opacity: 1;
+}
+.story-ab .story-stage { height: 100svh; min-height: 640px; max-height: none; }
+.story-ab .hero-meta { inset: 14% 6% auto; font-size: 12px; letter-spacing: .07em; }
+.story-ab .hero-title {
+  inset: 21% 6% 22%; font-size: min(11.4vw, 18svh, 220px);
+  line-height: .92; font-weight: 450; letter-spacing: -.06em; word-spacing: .08em;
+  pointer-events: none;
+}
+.story-ab .hero-line { position: absolute; left: 0; right: 0; white-space: nowrap; }
+.story-ab .line-one { top: 0; }
+.story-ab .line-two { bottom: 0; margin: 0; text-align: right; }
+.story-ab .hero-film {
+  left: var(--film-left); top: var(--film-top);
+  width: var(--film-w); height: var(--film-h);
+  min-width: 0; max-height: none; border-radius: 0;
+  transform: translate(-50%, -50%); opacity: 1; background: transparent;
+  border: 0; box-shadow: none;
+  container-type: size;
+  will-change: width, height, left, top;
+}
+#site-content .story-ab .hero-film video {
+  /* Fit the video element itself to its native ratio so feathering reaches
+     the picture edges, including when the surrounding stage is letterboxed. */
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: min(100cqw, calc(100cqh * var(--film-aspect, 1.7777778)));
+  height: auto; max-height: none; aspect-ratio: var(--film-aspect, 1.7777778);
+  object-fit: contain; opacity: 1;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent), linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent), linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.story-ab .film-shade { display: none; }
+.story-ab .hero-bottom { inset: auto 6% 8%; align-items: flex-end; gap: 32px; }
+.story-ab .hero-summary > p { font-size: 16px; margin-bottom: 16px; }
+.story-ab .outline-cta { min-height: 48px; }
+.story-ab .scroll-cue { bottom: 1.8%; min-height: 38px; }
+.story-ab .story-statement {
+  inset: 0; width: 52%; padding: 120px 0 80px 6vw;
+  justify-content: center;
+}
+.story-ab .story-statement .eyebrow { margin-bottom: 28px; }
+.story-ab .story-statement h2 { font-size: clamp(38px, 5.4vw, 104px); line-height: 1.4; letter-spacing: -.045em; }
+.story-ab .statement-line { white-space: nowrap; }
+.story-ab .statement-line:last-child { padding: 0; color: #bcbcbc; }
+.story-ab .statement-caption { max-width: 420px; margin: 32px 0 0; gap: 18px; }
+.story-ab .statement-caption p { font-size: 16px; line-height: 1.85; }
+.story-ab .story-statement > .text-link { align-self: flex-start; margin: 28px 0 0; min-height: 44px; }
+
+@media (min-width: 641px) and (max-width: 1023px) {
+  .story-ab .hero-title { inset: 21% 6% 25%; font-size: min(11.4vw, 17svh); }
+  .story-ab .story-statement { width: 58%; padding-left: 5vw; }
+  .story-ab .story-statement h2 { font-size: 5.5vw; }
+  .story-ab .statement-caption { max-width: 340px; }
+}
+
+@media (max-width: 640px) {
+  .story-ab { height: 225svh; --film-top: 46%; }
+  .story-ab .story-stage { min-height: 0; height: 100svh; }
+  .story-ab .hero-meta { inset: max(88px, 13%) 6% auto; font-size: 11px; letter-spacing: .015em; }
+  .story-ab .hero-title {
+    inset: 21% 6% 35%; font-size: 16vw; line-height: 1;
+    letter-spacing: -.045em; word-spacing: .07em;
+  }
+  .story-ab .hero-bottom { bottom: 9%; align-items: flex-start; gap: 20px; }
+  .story-ab .hero-summary > p { font-size: 14px; line-height: 1.65; margin-bottom: 12px; }
+  .story-ab .outline-cta { min-height: 46px; padding: 10px 20px; }
+  .story-ab .hero-bottom .member-lockup { gap: 14px; }
+  .story-ab .hero-bottom .member-lockup p { font-size: 12px; line-height: 1.6; }
+  .story-ab .scroll-cue { bottom: 1%; min-height: 40px; font-size: 11px; }
+  .story-ab .story-statement {
+    inset: 46% 7% auto; width: auto; padding: 0; display: block;
+  }
+  .story-ab .story-statement .eyebrow { font-size: 11px; margin-bottom: 18px; }
+  .story-ab .story-statement h2 { font-size: 9vw; line-height: 1.45; letter-spacing: -.035em; }
+  .story-ab .statement-caption { margin-top: 20px; gap: 14px; }
+  .story-ab .statement-caption p { font-size: 15px; line-height: 1.8; }
+  .story-ab .story-statement > .text-link { margin-top: 18px; min-height: 44px; }
+}
+
+@media (max-width: 640px) and (max-height: 700px) {
+  .story-ab .hero-meta { top: 82px; font-size: 10px; }
+  .story-ab .hero-title { top: 22%; bottom: 38%; font-size: 15.5vw; }
+  .story-ab .hero-bottom { bottom: 9%; gap: 12px; }
+  .story-ab .hero-summary > p { font-size: 13px; margin-bottom: 8px; }
+  .story-ab .hero-bottom .member-lockup p { font-size: 11px; }
+  .story-ab .story-statement { top: 44%; }
+  .story-ab .story-statement .eyebrow { margin-bottom: 12px; font-size: 10px; }
+  .story-ab .story-statement h2 { font-size: 8.6vw; }
+  .story-ab .statement-caption { margin-top: 14px; }
+  .story-ab .statement-caption p { font-size: 14px; line-height: 1.7; }
+  .story-ab .story-statement > .text-link { margin-top: 12px; }
+}
+
+@media (max-height: 500px) and (max-width: 1023px), (prefers-reduced-motion: reduce) {
+  .story-ab { height: auto; }
+  .story-ab .story-stage { height: auto; min-height: 0; padding: 108px 6vw 0; }
+  .story-ab .hero-meta { position: relative; inset: auto; margin-bottom: 26px; }
+  .story-ab .hero-title { position: relative; inset: auto; font-size: clamp(44px, 11vw, 170px); }
+  .story-ab .hero-line { position: relative; inset: auto; transform: none; }
+  .story-ab .line-two { margin-top: 12px; }
+  .story-ab .hero-film { position: relative; inset: auto; width: 100%; height: auto; aspect-ratio: 2; transform: none; border-radius: 0; margin: 26px 0 0; }
+  .story-ab .hero-bottom { position: relative; inset: auto; margin-top: 28px; }
+  .story-ab .scroll-cue { position: relative; inset: auto; margin-top: 24px; }
+  .story-ab .story-statement { position: relative; inset: auto; width: 100%; padding: 80px 0; }
+  .story-ab .story-statement h2 { font-size: clamp(30px, 7vw, 90px); }
+  .story-ab .statement-caption { max-width: 460px; }
+}

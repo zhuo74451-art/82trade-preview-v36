@@ -1,0 +1,159 @@
+/* Unified blue sampled from the user's selected swatch.
+   Keep the existing layout and motion. Exported HTML shares these tokens. */
+:root {
+  --lp-accent: var(--brand-blue);
+  --brand-blue: #3ec2dc;
+  --brand-blue-ink: var(--brand-blue);
+  --brand-blue-hover: var(--brand-blue);
+  --brand-blue-rgb: 62 194 220;
+  --brand-surface: #0d1418;
+}
+
+#site-content ::selection { background: var(--brand-blue); color: #050505; }
+#site-content :is(a, button, summary):focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 5px;
+}
+
+/* One quiet wash behind the film, without restoring its removed frame. */
+#site-content .story-ab .story-stage {
+  background: radial-gradient(ellipse at 74% 48%, rgb(var(--brand-blue-rgb) / .075), transparent 62%);
+}
+#site-content .story-ab .line-two { color: var(--brand-blue-ink); }
+#site-content .story-ab .hero-film video { filter: none; }
+#site-content .eyebrow { color: var(--brand-blue-ink); }
+#site-content :is(.scroll-tick, .tiny-cross) { color: var(--brand-blue); }
+
+/* Brand color marks the community invitation and interactive details. */
+#site-content .outline-cta {
+  color: var(--brand-blue-ink);
+  border-color: rgb(var(--brand-blue-rgb) / .5);
+  background: rgb(var(--brand-blue-rgb) / .055);
+}
+#site-content .outline-cta:is(:hover, :focus-visible) {
+  background: var(--brand-blue); border-color: var(--brand-blue); color: #050505;
+}
+#site-content .community-action .primary-cta {
+  background: var(--brand-blue); border-color: var(--brand-blue); color: #050505;
+}
+#site-content .community-action .primary-cta:is(:hover, :focus-visible) {
+  background: var(--brand-blue-hover); border-color: var(--brand-blue-hover);
+  box-shadow: 0 6px 30px rgb(var(--brand-blue-rgb) / .12);
+}
+#site-content .landing-header nav a:last-child > span,
+#site-content .text-link > :is(svg, span:last-child) { color: var(--brand-blue); }
+#site-content .landing-header nav a:hover,
+#site-content .text-link:is(:hover, :focus-visible) { color: var(--brand-blue-ink); }
+#site-content .member-faces .member-plus {
+  background: var(--brand-blue); color: #050505;
+  width: 64px; flex: none; border-radius: 999px;
+  font-size: 14px; font-weight: 600; line-height: 1; letter-spacing: -.025em;
+}
+
+/* Keep the learning cards graphite; blue belongs to meaningful emphasis. */
+#site-content .strategy-note em { color: var(--brand-blue); }
+#site-content .feature-grid > a {
+  box-shadow: inset 0 -20px 80px -20px rgb(var(--brand-blue-rgb) / .055);
+}
+#site-content .feature-grid > a:is(:hover, :focus-visible) {
+  border-color: rgb(var(--brand-blue-rgb) / .4);
+}
+#site-content .feature-grid > a > div:nth-last-child(2) > span { color: var(--brand-blue-ink); }
+#site-content .joining-details > summary > span { color: var(--brand-blue); }
+#site-content .footer-brand:hover { color: var(--brand-blue-ink); }
+
+/* Interactive color response only; static text no longer pretends to be clickable. */
+#site-content :is(.text-link, .wordmark, .footer-brand, .joining-details > summary),
+#site-content .footer-brand > span {
+  transition: color .25s ease;
+}
+#site-content a:focus-visible:not(.primary-cta):not(.outline-cta):not(.member-plus) {
+  color: var(--brand-blue);
+}
+#site-content .feature-grid > a:focus-visible h3,
+#site-content .feature-grid > a:focus-visible > div:nth-last-child(2) > span {
+  color: var(--brand-blue);
+}
+@media (hover: hover) and (pointer: fine) {
+  #site-content .wordmark:hover,
+  #site-content .joining-details > summary:hover,
+  #site-content .footer-bottom > :is(a, button):hover,
+  #site-content .onboarding-content a:hover,
+  #site-content .onboarding-content a:hover span,
+  #site-content .feature-grid > a:hover h3,
+  #site-content .feature-grid > a:hover > div:nth-last-child(2) > span {
+    color: var(--brand-blue);
+  }
+}
+
+/* Joining steps: the existing center rail fills as each step scrolls past. */
+#site-content .onboarding-content [data-timeline-track] {
+  overflow: hidden;
+  color: var(--brand-blue);
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgb(255 255 255 / .09) 15%, rgb(255 255 255 / .09) 85%, transparent);
+}
+#site-content .onboarding-content [data-timeline-fill] {
+  display: block;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    color-mix(in srgb, currentColor 8%, transparent) 15%,
+    color-mix(in srgb, currentColor 40%, transparent) 32%,
+    currentColor 50%,
+    color-mix(in srgb, currentColor 40%, transparent) 68%,
+    color-mix(in srgb, currentColor 8%, transparent) 85%,
+    transparent 100%);
+}
+#site-content .onboarding-content [data-timeline-fill]::after {
+  content: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  #site-content :is(.text-link, .wordmark, .footer-brand, .joining-details > summary),
+  #site-content .footer-brand > span { transition: none; }
+  #site-content .onboarding-content [data-timeline-fill]::after { display: none; }
+}
+
+@media (max-width: 640px) {
+  #site-content .member-faces .member-plus { width: 58px; font-size: 12px; }
+  #site-content .story-ab .story-stage {
+    background: radial-gradient(ellipse at 70% 36%, rgb(var(--brand-blue-rgb) / .055), transparent 60%);
+  }
+}
+
+/* Local typography trial: approximate the heavy grotesk in the supplied logo.
+   Use the installed variable fonts, with readable weights for long copy. */
+#site-content {
+  --trial-font: Geist, 'Noto Sans TC', sans-serif;
+  font-family: var(--trial-font);
+  font-weight: 500;
+}
+#site-content :is(h1, h2, h3, p, a, button, summary, span, small, strong, em) {
+  font-family: var(--trial-font);
+}
+#site-content .story-ab .hero-title {
+  font-weight: 900;
+  font-size: min(10.4vw, 17svh, 200px);
+  letter-spacing: -.055em;
+}
+#site-content .wordmark { font-weight: 850; letter-spacing: -.055em; }
+#site-content .story-statement h2,
+#site-content .learning-heading h2,
+#site-content .community-main h2 { font-weight: 800; letter-spacing: -.035em; }
+#site-content h3, #site-content .signal-note strong { font-weight: 800; }
+#site-content :is(.hero-summary, .statement-caption, .member-lockup) p,
+#site-content .learning-heading > p, #site-content .feature-grid h3 + p { font-weight: 500; }
+#site-content :is(.outline-cta, .primary-cta, .text-link),
+#site-content .landing-header nav, #site-content .joining-details > summary { font-weight: 650; }
+#site-content :is(.eyebrow, .hero-meta, .scroll-cue, .community-small) {
+  font-weight: 650; letter-spacing: .075em;
+}
+#site-content .member-faces .member-plus { font-weight: 800; }
+#site-content .footer-brand { font-weight: 900; font-size: clamp(56px, 15.4vw, 290px); letter-spacing: -.065em; }
+@media (max-width: 640px) {
+  #site-content .story-ab .hero-title { font-size: 15vw; letter-spacing: -.05em; }
+  #site-content .footer-brand { font-size: 15.4vw; }
+  #site-content .hero-meta { letter-spacing: .01em; }
+}
+@media (max-height: 500px) and (max-width: 1023px), (prefers-reduced-motion: reduce) {
+  #site-content .story-ab .hero-title { font-size: clamp(40px, 10vw, 160px); }
+}
